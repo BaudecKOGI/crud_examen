@@ -115,7 +115,7 @@
                             </label>
                             <select id="categoria_id" name="categoria_id" class="form-select-custom" required>
                                 <option value="">Selecciona una categoría</option>
-                                @foreach(\App\Models\Categoria::all() as $categoria)
+                                @foreach($categorias as $categoria)
                                     <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
                                         {{ $categoria->nombre }}
                                     </option>

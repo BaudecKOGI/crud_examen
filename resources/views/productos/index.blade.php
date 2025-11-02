@@ -51,7 +51,7 @@
         <div class="stat-box">
             <div class="stat-icon">📁</div>
             <div class="stat-details">
-                <span class="stat-number">{{ \App\Models\Categoria::count() }}</span>
+                <span class="stat-number">{{ $categorias->where('estado', 'activo')->count() }}</span>
                 <span class="stat-label">Categorías</span>
             </div>
         </div>
@@ -100,9 +100,9 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    @forelse($productos as $producto)
+                    @forelse($productos as $index => $producto)
                     <tr>
-                        <td><span class="badge-id">#{{ $producto->id }}</span></td>
+                        <td><span class="badge-id">#{{ $index + 1 }}</span></td>
                         <td>
                             <div class="product-image">
                                 @if($producto->imagen)
@@ -133,7 +133,7 @@
                             <span class="badge-stock">{{ $producto->stock }}</span>
                         </td>
                         <td>
-                            <span class="badge-category">{{ $producto->categoria->nombre }}</span>
+                            <span class="badge-category">{{ $producto->categoria->nombre ?? '' }}</span>
                         </td>
                         <td>
                             <div class="action-buttons">
@@ -144,7 +144,7 @@
                                     data-descripcion="{{ $producto->descripcion }}"
                                     data-precio="S/. {{ number_format($producto->precio, 2) }}"
                                     data-stock="{{ $producto->stock }}"
-                                    data-categoria="{{ $producto->categoria->nombre }}"
+                                    data-categoria="{{ $producto->categoria->nombre ?? '' }}"
                                     @if($producto->imagen) data-imagen="{{ asset('storage/'.$producto->imagen) }}" @endif
                                 >
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -193,7 +193,7 @@
         </div>
     </div>
 
-    <!-- Modal Ver Producto - MEJORADO -->
+    <!-- Modal Ver Producto -->
     <div id="productModal" class="modal-producto">
         <div class="modal-producto-content">
             <div class="modal-producto-header">

@@ -14,6 +14,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->enum('estado', ['activo', 'inactivo'])->default('activo');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ✅ agregado
             $table->timestamps();
         });
     }

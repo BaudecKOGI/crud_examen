@@ -113,7 +113,7 @@
                                 Categoría
                             </label>
                             <select id="categoria_id" name="categoria_id" class="form-select-custom" required>
-                                @foreach(\App\Models\Categoria::all() as $categoria)
+                                @foreach($categorias as $categoria)
                                     <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
                                         {{ $categoria->nombre }}
                                     </option>
@@ -194,7 +194,7 @@
                         <h4>Información del Producto</h4>
                         <div class="info-detail">
                             <span class="info-label">ID:</span>
-                            <span class="info-value">#{{ $producto->id }}</span>
+                            <span class="info-value">#{{ $index + 1 }}</span>
                         </div>
                         <div class="info-detail">
                             <span class="info-label">Creado:</span>

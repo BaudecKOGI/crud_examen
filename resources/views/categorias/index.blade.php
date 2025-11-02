@@ -51,7 +51,7 @@
         <div class="stat-box">
             <div class="stat-icon">📊</div>
             <div class="stat-details">
-                <span class="stat-number">{{ \App\Models\Producto::count() }}</span>
+                <span class="stat-number">{{ $productos->count() }}</span>
                 <span class="stat-label">Total Productos</span>
             </div>
         </div>
@@ -94,9 +94,9 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    @forelse($categorias as $categoria)
+                    @forelse($categorias as $index => $categoria)
                     <tr>
-                        <td><span class="badge-id">#{{ $categoria->id }}</span></td>
+                        <td><span class="badge-id">#{{ $index + 1 }}</span></td>
                         <td>
                             <div class="categoria-image">
                                 @if($categoria->imagen)

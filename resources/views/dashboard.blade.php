@@ -12,14 +12,14 @@
                 <div class="stat-card">
                     <div class="stat-icon">📊</div>
                     <div class="stat-info">
-                        <span class="stat-number">{{ \App\Models\Categoria::count() }}</span>
+                        <span class="stat-number">{{ \App\Models\Categoria::where('user_id', Auth::id())->count() }}</span>
                         <span class="stat-label">Categorías</span>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">🛍️</div>
                     <div class="stat-info">
-                        <span class="stat-number">{{ \App\Models\Producto::count() }}</span>
+                        <span class="stat-number">{{ \App\Models\Producto::where('user_id', Auth::id())->count() }}</span>
                         <span class="stat-label">Productos</span>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <span class="card-link">Ver listado →</span>
                         </div>
                     </div>
-                    <div class="card-badge">{{ \App\Models\Categoria::count() }}</div>
+                    <div class="card-badge">{{ \App\Models\Categoria::where('user_id', Auth::id())->count() }}</div>
                 </a>
 
                 <!-- Card Productos -->
@@ -69,7 +69,7 @@
                             <span class="card-link">Ver listado →</span>
                         </div>
                     </div>
-                    <div class="card-badge">{{ \App\Models\Producto::count() }}</div>
+                    <div class="card-badge">{{ \App\Models\Producto::where('user_id', Auth::id())->count() }}</div>
                 </a>
             </div>
 

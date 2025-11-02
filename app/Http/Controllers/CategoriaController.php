@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
-        return view('categorias.index', compact('categorias'));
+        // Mostrar solo categorías del usuario actual
+        $categorias = Categoria::where('user_id', Auth::id())->with('productos')->get();
+
+        // También pasamos los productos del usuario para la estadística
+        $productos = \App\Models\Producto::where('user_id', Auth::id())->get();
+
+        return view('categorias.index', compact('categorias', 'productos'));
     }
 
     public function create()
@@ -32,17 +38,22 @@ class CategoriaController extends Controller
             $data['imagen'] = $request->file('imagen')->store('categorias', 'public');
         }
 
+        $data['user_id'] = Auth::id();
+
         Categoria::create($data);
         return redirect()->route('categorias.index')->with('success', 'Categoría creada correctamente.');
     }
 
     public function edit(Categoria $categoria)
     {
+        $this->authorizeCategoria($categoria);
         return view('categorias.edit', compact('categoria'));
     }
 
     public function update(Request $request, Categoria $categoria)
     {
+        $this->authorizeCategoria($categoria);
+
         $data = $request->validate([
             'nombre' => 'required|max:255',
             'descripcion' => 'nullable',
@@ -51,7 +62,6 @@ class CategoriaController extends Controller
         ]);
 
         if ($request->hasFile('imagen')) {
-            // Eliminar imagen anterior si existe
             if ($categoria->imagen && Storage::disk('public')->exists($categoria->imagen)) {
                 Storage::disk('public')->delete($categoria->imagen);
             }
@@ -64,12 +74,20 @@ class CategoriaController extends Controller
 
     public function destroy(Categoria $categoria)
     {
-        // Eliminar imagen si existe
+        $this->authorizeCategoria($categoria);
+
         if ($categoria->imagen && Storage::disk('public')->exists($categoria->imagen)) {
             Storage::disk('public')->delete($categoria->imagen);
         }
-        
+
         $categoria->delete();
         return redirect()->route('categorias.index')->with('success', 'Categoría eliminada correctamente.');
+    }
+
+    protected function authorizeCategoria(Categoria $categoria)
+    {
+        if ($categoria->user_id !== Auth::id()) {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
     }
 }

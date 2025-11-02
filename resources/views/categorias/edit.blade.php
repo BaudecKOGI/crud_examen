@@ -167,19 +167,6 @@
                 </div>
             </form>
         </div>
-
-        <!-- Info Card -->
-        <div class="info-card">
-            <div class="info-icon">💡</div>
-            <h3>Consejos</h3>
-            <ul class="info-list">
-                <li>Usa nombres cortos y descriptivos</li>
-                <li>Evita duplicar categorías</li>
-                <li>Piensa en cómo organizarás tus productos</li>
-                <li>Las categorías inactivas no aparecerán en los filtros</li>
-                <li>Al actualizar, puedes cambiar la imagen</li>
-            </ul>
-        </div>
     </div>
 </div>
 
@@ -196,8 +183,6 @@
     .form-container {
         max-width: 1200px;
         width: 100%;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
         gap: 2rem;
     }
 
@@ -542,13 +527,6 @@
         border-color: #FFD700;
     }
 
-    .info-card {
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.05));
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        border-radius: 24px;
-        padding: 2.5rem;
-        animation: fadeInRight 0.5s ease;
-    }
 
     @keyframes fadeInRight {
         from {
