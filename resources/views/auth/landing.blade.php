@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido | Sistema de Gestión</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     @vite(['resources/css/app.css'])
     <style>
         * {
@@ -28,21 +31,7 @@
             max-width: 500px;
             width: 100%;
             text-align: center;
-        }
-
-        .logo-circle {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50%;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            color: #1a1a1a;
-            font-weight: bold;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
         }
 
         h1 {
@@ -128,7 +117,9 @@
 </head>
 <body>
     <div class="landing-container">
-        <div class="logo-circle">SG</div>
+        <img src="{{ asset('images/logo.png') }}" 
+                    alt="Logo" 
+                    style="width: 100px; height: 100px; border-radius: 8px; display: flex; margin-left: 200px">
         <h1>Sistema de Gestión</h1>
         <p class="subtitle">Administra tus productos y categorías de forma profesional</p>
 

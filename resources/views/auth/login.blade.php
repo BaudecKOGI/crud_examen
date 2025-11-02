@@ -90,6 +90,22 @@
             margin-top: 0.3rem;
         }
 
+        .register-link {
+            color: #aaa;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .register-link a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             margin-top: 2rem;
             font-size: 0.9rem;
@@ -121,6 +137,10 @@
                 <button type="submit" class="btn-login">Entrar</button>
             </div>
         </form>
+
+        <p class="register-link">
+            ¿Aun no tienes una cuenta? <a href="{{ route('register') }}">Registrate Aqui</a>
+        </p>
 
         <footer>
             Aplicación desarrollada por Bryan Alessandro Uceda De La Cruz
